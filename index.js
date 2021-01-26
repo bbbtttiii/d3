@@ -1,3 +1,59 @@
+// using functions to transform
+
+let data = [2,14,4,16,8,6,13,33]
+
+let svg = d3.select('svg').attr('height', 800).attr('width', '100%')
+
+svg.selectAll('rect')
+  .data(data)
+  .enter().append('rect')
+  .attr('height', function(d,i){return d*10})
+  .attr('width', 70)
+  .attr('fill', 'salmon')
+  .attr('x', function(d,i) {return 80*i})
+  .attr('y', function(d,i) {return 350-(d*10)})
+  svg.selectAll('rect')
+    .data(data)
+    .enter().append('rect')
+
+let fixedX = 10
+svg.selectAll('circle')
+  .data(data)
+  .enter().append('circle')
+    .attr('fill', 'cornflowerblue')
+    .attr('stroke', 'black')
+    .attr('stroke-width', '3')
+    .attr('cx', function(d,i){fixedX +=(d*5)+(i*10); return fixedX})
+    .attr('cy', 500)
+    .attr('r', function(d,i){return d*5})
+
+// using generators
+
+let lineGenerator = d3.line() // line generator
+  .curve(d3.curveCardinal) // curve interpolation
+
+// given as [x, y]
+let points = [
+  [0, 80],
+  [100, 100],
+  [200, 30],
+  [300, 50],
+  [400, 40],
+  [500, 80]
+]
+
+let pathData = lineGenerator(points)
+
+d3.select('path')
+  .attr('d', pathData)
+  .attr('stroke', 'black')
+  .attr('stroke-width', '5')
+  .attr('fill', 'none')
+
+
+//
+
+
 // let svg = d3.select('svg') //select svg element from DOM
 //   .attr('width', 600)  //define width
 //   .attr('height', 600)  //define height
@@ -31,45 +87,3 @@
 // //   .attr('y2', 100)  //end y position
 // //   .attr('stroke', 'purple')  //stroke color
 // //   .attr('stroke-width', 5)  //stroke width
-
-// //
-
-// const makeFruit = type => ({ type })
-
-// const fruits = d3.range(5)
-//   .map(() => makeFruit('apple'))
-
-// console.log(fruits)
-
-// svg.selectAll('circle').data(fruits)
-//   .enter().append('circle')
-//     .attr('cx', (d,i) => i * 100)
-//     .attr('cy', (height / 2))
-//     .attr('r', 50)
-
-let data = [2,14,4,16,8,6,13]
-
-let svg = d3.select('svg').attr('height', 800).attr('width', '100%')
-svg.selectAll('rect')
-  .data(data)
-  .enter().append('rect')
-  .attr('height', function(d,i){return d*10})
-  .attr('width', 70)
-  .attr('fill', 'red')
-  .attr('x', function(d,i) {return 80*i})
-  .attr('y', function(d,i) {return 350-(d*10)})
-  svg.selectAll('rect')
-    .data(data)
-    .enter().append('rect')
-
-let fixedX = 100
-
-svg.selectAll('circle')
-  .data(data)
-  .enter().append('circle')
-    .attr('fill', 'blue')
-    .attr('stroke', 'black')
-    .attr('stroke-width', '3')
-    .attr('cx', function(d,i){fixedX +=(d*10)+(i*30); return fixedX})
-    .attr('cy', 500)
-    .attr('r', function(d,i){return d*7})
