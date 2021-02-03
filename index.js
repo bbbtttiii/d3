@@ -1,47 +1,53 @@
+let svg = d3.select('svg') //set canvas properties
+  .attr('height', '100%')
+  .attr('width', '100%')
+
 // using functions to transform
 
-let data = [2,14,4,16,8,6,13,33]
+// let data = [4,10,5,19,3,1,6,23,2,10]
 
-let svg = d3.select('svg').attr('height', 800).attr('width', '100%')
+// svg.selectAll('rect')
+//   .data(data)
+//   .enter().append('rect')
+//   .attr('height', function(d,i){return d*10})
+//   .attr('width', 70)
+//   .attr('fill', 'salmon')
+//   .attr('x', function(d,i) {return 80*i})
+//   .attr('y', function(d,i) {return 350-(d*10)})
+//   svg.selectAll('rect')
+//     .data(data)
+//     .enter().append('rect')
 
-svg.selectAll('rect')
-  .data(data)
-  .enter().append('rect')
-  .attr('height', function(d,i){return d*10})
-  .attr('width', 70)
-  .attr('fill', 'salmon')
-  .attr('x', function(d,i) {return 80*i})
-  .attr('y', function(d,i) {return 350-(d*10)})
-  svg.selectAll('rect')
-    .data(data)
-    .enter().append('rect')
+// let fixedX = 10
+// svg.selectAll('circle')
+//   .data(data)
+//   .enter().append('circle')
+//     .attr('fill', 'cornflowerblue')
+//     .attr('stroke', 'black')
+//     .attr('stroke-width', '3')
+//     .attr('cx', function(d,i){fixedX +=(d*5)+(i*10); return fixedX})
+//     .attr('cy', 500)
+//     .attr('r', function(d,i){return d*5})
 
-let fixedX = 10
-svg.selectAll('circle')
-  .data(data)
-  .enter().append('circle')
-    .attr('fill', 'cornflowerblue')
-    .attr('stroke', 'black')
-    .attr('stroke-width', '3')
-    .attr('cx', function(d,i){fixedX +=(d*5)+(i*10); return fixedX})
-    .attr('cy', 500)
-    .attr('r', function(d,i){return d*5})
 
 // using generators
 
-let lineGenerator = d3.line() // line generator
-  .curve(d3.curveCardinal) // curve interpolation
-
 // given as [x, y]
-let points = [
+const points = [
   [0, 80],
-  [100, 100],
-  [200, 30],
-  [300, 50],
-  [400, 40],
-  [500, 80]
+  [100, 120],
+  [200, 50],
+  [300, 20],
+  [400, 50],
+  [500, 10],
+  [600, 50],
+  [700, 20],
+  [800, 90]
 ]
 
+let lineGenerator = d3.line() // line generator
+  .curve(d3.curveCardinal) // curve interpolation
+  
 let pathData = lineGenerator(points)
 
 d3.select('path')
@@ -51,7 +57,7 @@ d3.select('path')
   .attr('fill', 'none')
 
 
-//
+/////////////
 
 
 // let svg = d3.select('svg') //select svg element from DOM

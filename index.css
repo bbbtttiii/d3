@@ -1,6 +1,6 @@
 html, body {
   margin: 0;
-  background-color: papayawhip;
+  background-color: #ffefd5;
   box-sizing: border-box;
 }
 
@@ -8,10 +8,10 @@ html, body {
   display: flex;
   flex: 1;
   margin: 20px;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   min-width: 0;
   min-height: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* border: 1px black solid; */
 }
 
