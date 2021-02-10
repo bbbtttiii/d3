@@ -1,60 +1,63 @@
-let svg = d3.select('svg') //set canvas properties
-  .attr('height', '100%')
-  .attr('width', '100%')
-
 // using functions to transform
 
-// let data = [4,10,5,19,3,1,6,23,2,10]
+let data = [2,14,4,16,8,6,13,15]
 
-// svg.selectAll('rect')
-//   .data(data)
-//   .enter().append('rect')
-//   .attr('height', function(d,i){return d*10})
-//   .attr('width', 70)
-//   .attr('fill', 'salmon')
-//   .attr('x', function(d,i) {return 80*i})
-//   .attr('y', function(d,i) {return 350-(d*10)})
-//   svg.selectAll('rect')
-//     .data(data)
-//     .enter().append('rect')
+let svg = d3.select('svg')
+  .attr('height', 800)
+  .attr('width', 800)
 
-// let fixedX = 10
-// svg.selectAll('circle')
-//   .data(data)
-//   .enter().append('circle')
-//     .attr('fill', 'cornflowerblue')
-//     .attr('stroke', 'black')
-//     .attr('stroke-width', '3')
-//     .attr('cx', function(d,i){fixedX +=(d*5)+(i*10); return fixedX})
-//     .attr('cy', 500)
-//     .attr('r', function(d,i){return d*5})
+//bar chart
+
+//d: data, i: index
+
+svg.selectAll('rect')
+  .data(data)
+  .enter().append('rect')
+    .attr('fill', 'cornflowerblue')
+    .attr('height', function(d,i){return d*10})
+    .attr('width', 70)
+    .attr('x', function(d,i) {return 80*i})
+    .attr('y', function(d,i) {return 200-(d*10)})
+// //circles
 
 
-// using generators
+let posX = 50
+svg.selectAll('circle')
+  .data(data)
+  .enter().append('circle')
+    .attr('fill', 'cornflowerblue')
+    .attr('stroke', 'black')
+    .attr('stroke-width', '2')
+    .attr('cx', function(d,i){posX +=(d*5)+(i*5); return posX})
+    .attr('cy', 500)
+    .attr('r', function(d,i){return d*5})
 
-// given as [x, y]
-const points = [
-  [0, 80],
-  [100, 120],
-  [200, 50],
-  [300, 20],
-  [400, 50],
-  [500, 10],
-  [600, 50],
-  [700, 20],
-  [800, 90]
-]
 
-let lineGenerator = d3.line() // line generator
-  .curve(d3.curveCardinal) // curve interpolation
+// // using generators
+
+// // given as [x, y]
+// const points = [
+//   [0, 80],
+//   [100, 120],
+//   [200, 50],
+//   [300, 20],
+//   [400, 50],
+//   [500, 10],
+//   [600, 50],
+//   [700, 20],
+//   [800, 90]
+// ]
+
+// let lineGenerator = d3.line() // line generator
+//   .curve(d3.curveCardinal) // curve interpolation
   
-let pathData = lineGenerator(points)
+// let pathData = lineGenerator(points)
 
-d3.select('path')
-  .attr('d', pathData)
-  .attr('stroke', 'black')
-  .attr('stroke-width', '5')
-  .attr('fill', 'none')
+// d3.select('path')
+//   .attr('d', pathData)
+//   .attr('stroke', 'black')
+//   .attr('stroke-width', '5')
+//   .attr('fill', 'none')
 
 
 /////////////
